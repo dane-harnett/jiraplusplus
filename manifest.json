@@ -1,0 +1,15 @@
+{
+    "content_scripts": [ {
+        "exclude_globs":    [  ],
+        "include_globs":    [ "*" ],
+		"css": ["styles.css","chosen/chosen/chosen.css"],
+        "js":               [ "jquery.min.js","chosen/chosen/chosen.jquery.min.js","main.js" ],
+        "matches":          [   "http://jira.au.fcl.internal/*",
+                                "https://jira.au.fcl.internal/*"],
+
+		"all_frames":true
+    } ],
+    "description":  "JIRA extensions",
+    "name":         "JIRA Plus Plus",
+    "version":      "1.0.0"
+}

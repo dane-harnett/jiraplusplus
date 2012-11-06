@@ -1,0 +1,15 @@
+#specialAssigneeSelect {
+  margin: 0 5px;
+}
+
+#issue-workflow-transition fieldset.group:first {
+  padding-left: 150px!important;
+}
+#issue-workflow-transition fieldset.group div.checkbox {
+  float: left;
+  padding: 0 0;
+  width: 250px;
+}
+#issue-workflow-transition fieldset.group div.description {
+  padding: 0 0;
+}

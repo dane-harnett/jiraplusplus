@@ -1,0 +1,6 @@
+[submodule "chosen"]
+	path = chosen
+	url = https://github.com/harvesthq/chosen.git
+[submodule "jquery"]
+	path = jquery
+	url = https://github.com/jquery/jquery.git
