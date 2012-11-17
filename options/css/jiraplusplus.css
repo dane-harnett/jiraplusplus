@@ -1,0 +1,14 @@
+#newFavourite input {
+	width:250px;
+}
+#newFavourite {margin-left:80px;}
+table.favouritesData td.name {
+	width:30%;
+}
+table.favouritesData td.email {
+	/*width:59.4%;  ---- uncomment when we implement the edit functionality */
+	width:63%;
+}
+.editFavourite {
+	margin-right:5px;
+}
