@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JIRAPlusPlus Options</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/jiraplusplus.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <div class="container">
+        <h1>Welcome friend!</h1>
+        <p><h3>Use the following form to add a user to your Favourites list:</h3></p>
+        <div class="alert alert-error hide validationMessage"></div>
+        <div class="alert alert-success hide validationSuccessMessage"></div>
+        <form id="newFavourite">
+            <label for="email">Please enter the display name you would like them to show up as:</label>
+            <input type="text" placeholder="eg: Scott Warren" value="" id="name"><br>
+            <label for="email">Please enter their email address!</label>
+            <input type="text" placeholder="eg: scott_warren@flightcentre.com" value="" id="email"><br>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+        <div class="editFavouritesContainer">
+            <h3>Here we will show you your current Favourites List!</h3>
+            <div class="existingFavouritesData">
+                <em>There is current nothing to show here.. :-(</em>
+                <table class="favouritesData hide table table-hover" />
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jiraplusplus.js"></script>
+  </body>
+</html>
