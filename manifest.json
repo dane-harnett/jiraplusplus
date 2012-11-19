@@ -11,5 +11,6 @@
     "description":  "JIRA extensions",
     "name":         "JIRA Plus Plus",
     "version":      "1.0.0",
+    "options_page": "options/options.html",
     "manifest_version": 2
 }
