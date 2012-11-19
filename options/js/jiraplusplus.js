@@ -116,11 +116,11 @@ JIRAPLUSPLUS_OPTIONS = {
 	deleteFavourite: function($deleteButton) {
 		// create local scoped var to deal with input data in JSON format rather than a string
 		var currentOptions = JSON.parse(localStorage.jiraplusplus_options),
-			self = this;
-			$deleteButton = $( $deleteButton ); // jQuery object for the delete button
+			self = this,
+			$deleteButton = $( $deleteButton ), // jQuery object for the delete button
 			$name = $deleteButton.parent().parent().find('.name'), // jQuery object for the name
 			$email = $deleteButton.parent().parent().find('.email'), // jQuery object for the email
-			$tr = $deleteButton.parent().parent(); // jQuery object for the current row
+			$tr = $deleteButton.parent().parent(), // jQuery object for the current row
 			name = $name.html(), // name of Favourite to delete
 			email = $email.html(); // email of Favourite to delete
 
