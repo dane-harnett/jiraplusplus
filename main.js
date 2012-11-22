@@ -1,4 +1,7 @@
 $(function(){
+	chrome.storage.sync.get('customAssignees', function(items) {
+		localStorage.setItem('jiraplusplus_options', JSON.stringify( items ));
+	});
 	var defaults = {
 			customAssignees: {}
 		},

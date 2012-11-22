@@ -77,6 +77,9 @@ JIRAPLUSPLUS_OPTIONS = {
 
 		localStorage.setItem('jiraplusplus_options', JSON.stringify(currentOptions));
 
+		chrome.storage.sync.set(currentOptions);
+
+
 		// add successful message @TODO fadeout message after a certain time
 		$('.validationSuccessMessage').html("Success! You have added "+self.newFavouriteData.name+" to your Favourites list!").fadeIn();
 		
@@ -133,6 +136,8 @@ JIRAPLUSPLUS_OPTIONS = {
 
 		currentOptions.customAssignees.splice(self.count, 1); // delete matching Favourite from localStorage
 		localStorage.setItem('jiraplusplus_options', JSON.stringify(currentOptions)); // reset localStorage with our variable
+
+		chrome.storage.sync.set(currentOptions);
 
 		$tr.fadeOut(function() { // fadeout row that we just deleted
 			$(this).remove(); // remove from DOM
