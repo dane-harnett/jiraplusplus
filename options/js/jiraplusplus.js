@@ -98,6 +98,8 @@ JIRAPLUSPLUS_OPTIONS = {
 			// JSON.parse localstorage and then put into local var so we can do normal checks on them
 			var currentFavourites = JSON.parse(localStorage.getItem('jiraplusplus_options'));
 			// check if we have any existing options and dispaly them
+
+			$('.existingFavouritesData table tbody').html('');
 			if ( typeof currentFavourites.customAssignees !== "undefined" ) {
 				$.each(currentFavourites.customAssignees, function(count, data) {
 					// add new row with new Favourite
