@@ -44,6 +44,10 @@ $(function(){
 			}
 		});
 
+		if ($('.jpp-quickfilter').length == 0) {
+			$('.ops.js-quickfilter-selector').after('<ul class="ops jpp-quickfilter"></ul>');
+		}
+
 		var $quickFilters = $('.ghx-quickfilter-button');
 		var $jppAssigneeSelect = $('#jppAssigneeSelect');
 		var $jppFixVersionSelect = $('#jppFixVersionSelect');
@@ -75,24 +79,44 @@ $(function(){
 				assigneeOptions += '<option value="'+dfid+'"'+selected+'>'+$(this).html()+'</option>';
 			});
 
-			$('.ghx-quickfilter:last').after('<li><select id="jppAssigneeSelect"'+selectdata+' style="-webkit-appearance: menulist-button;height: 26px;border: 1px solid #ddd;"><option value="">Select assignee...</option>'+assigneeOptions+'</select></li>');
+			$('.jpp-quickfilter').append('<li><select id="jppAssigneeSelect"'+selectdata+' style="-webkit-appearance: menulist-button;height: 26px;border: 1px solid #ddd;"><option value="">Select assignee...</option>'+assigneeOptions+'</select></li>');
 			$jppAssigneeSelect = $('#jppAssigneeSelect');
 			$jppAssigneeSelect.bind('change', function(){
 				var id = $(this).val();
 				var pre = $(this).data('pre');
 				var loc = window.location.href.replace('&quickFilter='+pre, '');
-				window.location.href = loc + '&quickFilter='+id;
 				$(this).data('pre', $(this).val());
+				window.location.href = loc + '&quickFilter='+id;
 			});
 		}
 
 		if ($jppFixVersionSelect.length == 0) {
-			// var $fixVersionQuickFilters = $quickFilters.filter(function(){
-			// 	return $(this).attr('title').match(/fixVersion=(.*)/);
-			// });
-			// $.each($fixVersionQuickFilters, function(){
-			// 	$(this).hide();
-			// });
+			var $fixVersionQuickFilters = $quickFilters.filter(function(){
+				return $(this).attr('title').match(/fixVersion=(.*)/);
+			});
+			var fixVersionOptions = '';
+			var selectdata = '';
+
+			$.each($fixVersionQuickFilters, function(){
+				$(this).hide();
+				var selected = '';
+				var dfid = $(this).data('filterId');
+				if ($.inArray(dfid.toString(), currentFilterIds) > -1){
+					selected = ' selected';
+					selectdata = ' data-pre="'+dfid+'"';
+				}
+				fixVersionOptions += '<option value="'+dfid+'"'+selected+'>'+$(this).html()+'</option>';
+			});
+
+			$('.jpp-quickfilter').append('<li class="last"><select id="jppFixVersionSelect"'+selectdata+' style="-webkit-appearance: menulist-button;height: 26px;border: 1px solid #ddd;"><option value="">Select fix version...</option>'+fixVersionOptions+'</select></li>');
+			$jppFixVersionSelect = $('#jppFixVersionSelect');
+			$jppFixVersionSelect.bind('change', function(){
+				var id = $(this).val();
+				var pre = $(this).data('pre');
+				var loc = window.location.href.replace('&quickFilter='+pre, '');
+				$(this).data('pre', $(this).val());
+				window.location.href = loc + '&quickFilter='+id;
+			});
 		}
 
 		
