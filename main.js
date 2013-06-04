@@ -44,6 +44,60 @@ $(function(){
 			}
 		});
 
+		var $quickFilters = $('.ghx-quickfilter-button');
+		var $jppAssigneeSelect = $('#jppAssigneeSelect');
+		var $jppFixVersionSelect = $('#jppFixVersionSelect');
+		var qfreg = /&quickFilter=([0-9]+)/g;
+		var x = window.location.href.match(qfreg);
+		var currentFilterIds = [];
+		for (var i in x) {
+			var s = x[i].split('=');
+			if (s.length == 2)
+				currentFilterIds.push(s[1]);
+		}
+
+		if ($jppAssigneeSelect.length == 0) {
+			var $assigneeQuickFilters = $quickFilters.filter(function(){
+				return $(this).attr('title').match(/assignee="(.*)"/);
+			});
+
+			var assigneeOptions = '';
+			var selectdata = '';
+			
+			$.each($assigneeQuickFilters, function(){
+				$(this).hide();
+				var selected = '';
+				var dfid = $(this).data('filterId');
+				if ($.inArray(dfid.toString(), currentFilterIds) > -1){
+					selected = ' selected';
+					selectdata = ' data-pre="'+dfid+'"';
+				}
+				assigneeOptions += '<option value="'+dfid+'"'+selected+'>'+$(this).html()+'</option>';
+			});
+
+			$('.ghx-quickfilter:last').after('<li><select id="jppAssigneeSelect"'+selectdata+' style="-webkit-appearance: menulist-button;height: 26px;border: 1px solid #ddd;"><option value="">Select assignee...</option>'+assigneeOptions+'</select></li>');
+			$jppAssigneeSelect = $('#jppAssigneeSelect');
+			$jppAssigneeSelect.bind('change', function(){
+				var id = $(this).val();
+				var pre = $(this).data('pre');
+				var loc = window.location.href.replace('&quickFilter='+pre, '');
+				window.location.href = loc + '&quickFilter='+id;
+				$(this).data('pre', $(this).val());
+			});
+		}
+
+		if ($jppFixVersionSelect.length == 0) {
+			// var $fixVersionQuickFilters = $quickFilters.filter(function(){
+			// 	return $(this).attr('title').match(/fixVersion=(.*)/);
+			// });
+			// $.each($fixVersionQuickFilters, function(){
+			// 	$(this).hide();
+			// });
+		}
+
+		
+		//console.log($assigneeQuickFilters);
+
 		setTimeout(mainFunction, 500);
 	};
 	setTimeout(mainFunction, 500);
